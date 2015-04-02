@@ -1,6 +1,6 @@
 import bsddb
 DATABASE = "cstudents.db“
-db = bsddb.hashopen(DATABASE, 'c') #this command create a hash db in file
+#db = bsddb.hashopen(DATABASE, 'c') #this command create a hash db in file
 #"cstudents.db“
 #or db = bsddb.btopen(DATABASE, 'c') to create a B-Tree DB
 #or db = bsddb.rnopen(DATABASE, 'c') to create a record format file
@@ -10,13 +10,10 @@ db = bsddb.hashopen(DATABASE, 'c') #this command create a hash db in file
 
 
 def main():
-    connection, curs = connect()
     if connection == 0:
         print("Bye")
         return
     
-    # setup new tables
-    #setup_tbls(curs, connection)
 
     while True:
         print("1. Create and populate a database (c)")
@@ -54,6 +51,4 @@ def main():
             print("Invalid")
         print(inp)
 
-    cursor.close()
-    connection.close()
     return
