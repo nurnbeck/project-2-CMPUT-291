@@ -1,3 +1,3 @@
 # project-2-CMPUT-291
 Python program using the Berkeley DB libraries, to set up and populate a set of tables, and then conduct some interesting experiments focusing on various types of queries.
-- Hong Chen, Yishuo Wang & Nolan Beck
+- Hong Chen, Yishuo Wang, & Nolan Beck
