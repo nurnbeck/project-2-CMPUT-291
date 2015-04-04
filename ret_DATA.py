@@ -40,7 +40,7 @@ def ret_DATA(DB_FILE, filetype):
     elapse_time = (end_time - start_time) * 1000000
 
     print(len(result_lst), "record(s) received")
-    print("
+    print("Used", elapse_time, "micro secnods")
 
     data = data.decode(encoding = 'UTF-8')
 
