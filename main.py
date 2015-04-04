@@ -3,6 +3,8 @@ import random
 import time
 from bsddb3 import db
 
+from ret_DATA import *
+
 #DATABASE = "cstudents.db“
 #db = bsddb.hashopen(DATABASE, 'c') #this command create a hash db in file
 #"cstudents.db“
@@ -96,8 +98,10 @@ def cr_DB():
         return    
 def ret_KEY():
     return
+'''
 def ret_DATA():
     return
+'''
 def ret_RANGE():
     return
 def de_DB():
@@ -138,7 +142,10 @@ def main():
         elif inp == '2' or inp == 'k':
             
         elif inp == '3' or inp == 'r':
-            
+            # I passed filetype as a parameter into the function, which determines the type of database, 
+            #   i.e. filetype = 'btree' or filetype = 'hash' or filetype = 'indexfile'
+            # We don't have this variable yet, so maybe consider to have one in cr_DB()?
+            ret_DATA(DB_FILE, filetype)
         elif inp == '4' or inp == 'v':
             
         elif inp == '5' or inp == 'd':
