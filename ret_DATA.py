@@ -15,11 +15,11 @@ Not tested
 
 def ret_DATA(DB_FILE, filetype):
     try:
-        if filetype = 'btree':
+        if filetype == 'btree':
             db = bsddb.btopen(DB_FILE, 'r')
-        elif filetype = 'hash':
+        elif filetype == 'hash':
             db = bsddb.hashopen(DB_FILE, 'r')
-        elif filetype = 'indexfile':
+        elif filetype == 'indexfile':
             db = bsddb.btopen(DB_FILE, 'r')
     except:
         print("Unknown error occured, try again")
