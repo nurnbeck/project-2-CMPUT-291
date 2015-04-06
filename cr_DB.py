@@ -12,6 +12,7 @@ def cr_DB():
             break
         if ( type == 'hash' ):
             break
+        type = input(" select DB type (btree, hash, or indexfile) > ").lower()
     #print("Type is {}",type)
     # Check if there is an existing database
     try:
