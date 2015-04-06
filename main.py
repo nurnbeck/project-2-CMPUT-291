@@ -24,9 +24,10 @@ def get_random():
 def get_random_char():
     return chr(97 + random.randint(0, 25))
 
-
+'''
 def cr_DB():
-  
+    return
+'''
 def ret_KEY():
     return
 '''
