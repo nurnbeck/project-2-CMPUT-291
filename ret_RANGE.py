@@ -61,28 +61,28 @@ def ret_RANGE(DB_FILE,filetype):
                     if i<= upper_bound and i>= lower_bound:                 
                         resultlist.append(i)   
             else:
-                        
+                    
                     left,right=0,len(key_list)-1
                     if left>right:
-                        lower_bound = None
+                        low = None
                     while left<=right:
                         mid=(left+right)//2
-                        if key==key_list[mid]:
+                        if lower_bound==key_list[mid]:
                             return mid
-                        elif key<key_list[mid]:
+                        elif lower_bound<key_list[mid]:
                             right=mid-1
                             if right<0:
                                 return 0
-                            lower_bound=mid
-                        elif key>key_list[mid]:
+                            low=mid
+                        elif lower_bound>key_list[mid]:
                             left=mid+1
                             if left>len(key_list)-1:
                                 return False
-                            lower_bound=mid+1
+                            low=mid+1
                 
-                while ((key_list[lower_bound] <= upper_bound) and (lower_bound < len(key_list)-1)):
-                    resultlist.append(key_list[lower_bound])  
-                    lower_bound += 1               
+                while ((key_list[low] <= upper_bound) and (low < len(key_list)-1)):
+                    resultlist.append(key_list[low])  
+                    low += 1               
                     
                 end_time = time.time()
                 
