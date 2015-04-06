@@ -31,18 +31,18 @@ def ret_RANGE(DB_FILE,filetype):
             end_time = time.time()
                     
         elif upper_bound == lower_bound:
-            Given = upper_bound
+            thekey = upper_bound
             
             start_time = time.time()
             try:
-                resultlist = db[Given].decode(encoding = 'UTF-8')
+                resultlist = db[thekey].decode(encoding = 'UTF-8')
                 end_time = time.time()
-                Given = Given.decode(encoding = 'UTF-8')
+                thekey = thekey.decode(encoding = 'UTF-8')
                 
                 resultlist = resultlist.split()                                                                      
                 for data in resultlist:
-                    print(Given)
-                    answers.write(Given)
+                    print(thekey)
+                    answers.write(thekey)
                     answers.write('\n')
                     print(data)     
                     answers.write(data)
