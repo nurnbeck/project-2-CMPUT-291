@@ -1,8 +1,10 @@
 import bsddb3 as bsddb
 import random
 import time
+import sys
 from bsddb3 import db
 
+from cr_DB import *
 from ret_DATA import *
 
 #DATABASE = "cstudents.db“
@@ -51,10 +53,26 @@ def de_DB(indexfile = False):
 
 
 def main():
-    if connection == 0:
-        print("Bye")
+    # initialze answer to an empty file
+    answer = open('answers', 'w')
+    answer.close()
+    try:
+        dbtype = sys.argv[1].lower()
+    except:
+        print("Usage: python3 main.py db_type_option")
         return
-    
+
+    filetype = ''
+
+    if dbtype == '-btree' or dbtype == 'btree' or dbtype == '-b':
+        dbtype = 'btree'
+    elif dbtype == '-hash' or dbtype == 'hash' or dbtype == '-h':
+        dbtype = 'hash'
+    elif dbtype == '-indexfile' or dbtype == 'indexfile' or dbtype == '-i':
+        dbtype = 'indexfile'
+    else:
+        print("Usage: python3 main.py db_type_option")
+        return
 
     while True:
         print("1. Create and populate a database (c)")
@@ -63,6 +81,7 @@ def main():
         print("4. Retrieve records with a given range of key values (v)")
         print("5. Destroy the database (d)")
         print("6. Quit (q)") 
+        print("type cls to clear screen")
         inp = input("Enter your choice: ").lower()
         if inp == 'q' or inp == 'quit' or inp == "6":
             while True:
@@ -77,20 +96,32 @@ def main():
                     continue
             continue
         elif inp == '1' or inp == 'c':
-            
+            filetype = createdb(dbtype)
         elif inp == '2' or inp == 'k':
-            
+            pass
         elif inp == '3' or inp == 'r':
-            # I passed filetype as a parameter into the function, which determines the type of database, 
-            #   i.e. filetype = 'btree' or filetype = 'hash' or filetype = 'indexfile'
-            # We don't have this variable yet, so maybe consider to have one in cr_DB()?
+            if filetype == '' or filetype == False:
+                print("Database may not exist, continue may cause program crash")
+                while True:
+                    inp = input("Do you wish to continue (y/n) > ").lower()
+                    if inp == 'y' or inp == 'yes':
+                        break
+                    elif inp == 'n' or inp == 'no':
+                        break
+                    else:
+                        print("Please enter yes (y) or no (n)")
+                        continue
+                if inp == 'n' or inp == 'no':
+                    continue
             ret_DATA(DB_FILE, filetype)
         elif inp == '4' or inp == 'v':
-            
+            pass
         elif inp == '5' or inp == 'd':
-            
+            pass
         elif inp == '6' or inp == 'q':
-                        
+            pass
+        elif inp == 'cls':
+            os.system('cls' if os.name == 'nt' else 'clear')
         else:
             print("Invalid")
         print(inp)
