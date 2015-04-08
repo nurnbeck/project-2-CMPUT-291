@@ -1,4 +1,83 @@
+'''
+Creates a database
+Return type if a database is successfully created, otherwise return False
+- Simplified based on older version;
+- Tested under DB_SIZE = 10;
+- Removes database file and directory if mkdir fails the first time;
+- Does not handle duplicate keys so far. Will add that feature later;
+- Only supports btree and hash, further tests are necessory in order to create indexfile;
+- Closes the database before function return.
+'''
 
+import os
+import random
+import bsddb3 as bsddb
+
+DIR = "/tmp/yishuo_db/"
+DB_FILE = "/tmp/yishuo_db/sample_db"
+SDB_FILE = "/tmp/yishuo_db/IndexFile"
+
+#DB_SIZE = 100000
+DB_SIZE = 10
+SEED = 10000000
+
+def get_random():
+    return random.randint(0, 63)
+
+def get_random_char():
+    return chr(97 + random.randint(0, 25))
+
+def createdb(type):
+    print("\nCreate database")
+    # Create a directory, mkdir = 0 if one is successfully created
+    mkdir = os.system('mkdir %s' %(DIR))
+    if mkdir != 0:
+        # This is when the directory already exist
+        print("Remove database and directory\n")
+        mkdir = os.system('rm -f %s' %(DB_FILE))
+        mkdir = os.system('rm -f %s' %(SDB_FILE))
+        mkdir = os.system('rmdir %s' %(DIR))
+        mkdir = os.system('mkdir %s' %(DIR))
+        if mkdir != 0:
+            # This is when second mkdir failed, unknow error occured
+            print("mkdir failed, unknown error occured")
+            return False
+
+    # if database exists then overwrite it
+    if type == '1' or type == 'btree' or type == 'b':
+        # create btree db
+        db = bsddb.btopen(DB_FILE, 'c')
+    elif type == '2' or type == 'hash' or type == 'h':
+        # create hash db
+        db = bsddb.hashopen(DB_FILE, 'c')
+    elif type == '3' or type == 'indexfile' or type == 'i':
+        # create indexfile db
+        return
+
+    random.seed(SEED)
+    for i in range(DB_SIZE):
+        krng = 64 + get_random()
+        key = ''
+        for j in range(krng):
+            key += str(get_random_char())
+        print("KEY:", key)
+        vrng = 64 + get_random()
+        value = ''
+        for j in range(vrng):
+            value += str(get_random_char())
+        print("VALUE:", value)
+        print()
+        key = key.encode(encoding = 'UTF-8')
+        value = value.encode(encoding = 'UTF-8')
+        db[key] = value
+        
+    db.close()
+    print("\nDatabase created, type:", type, "\n")
+    return type
+
+
+
+'''
 def cr_DB():
     """
     Creates and populates the database
@@ -78,3 +157,4 @@ def cr_DB():
         print("Length of Database: ", len(DATABASE))
         DATABASE.close()
         return
+'''
