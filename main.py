@@ -36,8 +36,15 @@ def ret_DATA():
 '''
 def ret_RANGE():
     return
-def de_DB():
+def de_DB(indexfile = False):
+    '''
     db.close()
+    return
+    '''
+    # If there is an indexfile (indexfile = True) then remove it. Set initial value to False
+    os.remove(DB_FILE)
+    if indexfile:
+        os.remove(SDB_FILE)
     return
 
 
