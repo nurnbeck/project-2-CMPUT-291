@@ -51,8 +51,8 @@ def createdb(type):
         # create hash db
         db = bsddb.hashopen(DB_FILE, 'c')
     elif type == '3' or type == 'indexfile' or type == 'i':
-        # create indexfile db
-        return
+        db = bsddb.btopen(DB_FILE, 'c')
+        indexfile = bsddb.hashopen(SDB_FILE, 'c')
 
     random.seed(SEED)
     for i in range(DB_SIZE):
@@ -72,6 +72,8 @@ def createdb(type):
         db[key] = value
         
     db.close()
+    if type == '3' or type == 'indexfile' or type == 'i':
+        indexfile.close()
     print("\nDatabase created, type:", type, "\n")
     return type
 
