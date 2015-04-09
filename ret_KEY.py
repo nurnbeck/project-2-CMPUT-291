@@ -20,7 +20,8 @@ def ret_KEY(filetype):
     elif filetype == 'hash':
         db = bsddb.hashopen(DB_FILE, 'r')
     elif filetype == 'indexfile':
-        db = bsddb.btopen(SDB_FILE, 'r')
+        db = bsddb.btopen(DB_FILE, 'r')
+        indexfile = bsddb.hashopen(SDB_FILE, 'r')
     else:
         print("Unknown type, function terminated\n")
         return
@@ -56,6 +57,8 @@ def ret_KEY(filetype):
     print()
     answers.close()
     db.close()
+    if filetype == 'indexfile':
+        indexfile.close()
     return
 
 
