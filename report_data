@@ -1,0 +1,99 @@
+- Under DB_SIZE = 200
+
+btree:
+Function		Time (in microseconds)
+-------------------------------------------------
+Create database		101039.88647460938
+-------------------------------------------------
+Key search		387.9070281982422
+Key search		362.8730773925781
+Key search		347.8527069091797
+Key search		348.09112548828125
+-------------------------------------------------
+Data search		1530.1704406738281
+Data search		1523.9715576171875
+Data search		1531.1241149902344
+Data search		1520.8721160888672
+-------------------------------------------------
+Range search		9.059906005859375
+Range search		10.013580322265625
+Range search		12.159347534179688
+Range search		56.02836608886719 *
+-------------------------------------------------
+* Note that the last one goes through all keys 
+  (search from a to z)
+
+hash:
+Function		Time (in microseconds)
+-------------------------------------------------
+Create database		110446.92993164062
+-------------------------------------------------
+Key search		721.9314575195312
+Key search		697.8511810302734
+Key search		633.9550018310547
+Key search		622.9877471923828
+-------------------------------------------------
+Data search		2090.930938720703
+Data search		2088.0699157714844
+Data search		2058.0291748046875
+Data search		2075.1953125
+-------------------------------------------------
+Range search		777.9598236083984
+Range search		794.1722869873047
+Range search		765.8004760742188
+Range search		798.9406585693359 *
+-------------------------------------------------
+* Note that the last one goes through all keys
+  (search from a to z)
+
+
+
+- Under DB_SIZE = 100,000
+
+btree:
+Function		Time (in microseconds)
+-------------------------------------------------
+Create database		151470122.09892273
+-------------------------------------------------
+Key search		179966.21131896973
+Key search		173034.9063873291
+Key search		173804.04472351074
+Key search		172804.8324584961
+-------------------------------------------------
+Data search		912185.9073638916
+Data search		912654.1614532471
+Data search		918824.9111175537
+Data search		915392.8756713867
+-------------------------------------------------
+Range search		77.96287536621094
+Range search		24.080276489257812 *
+Range search		33.14018249511719
+Range search		24.080276489257812 *
+-------------------------------------------------
+* This is narrower than the one above it
+
+hash:
+Function		Time (in microseconds)
+-------------------------------------------------
+Create database		167614780.1876068
+-------------------------------------------------
+Key search		313838.00506591797
+Key search		317265.98739624023
+Key search		312488.0790710449
+Key search		311376.81007385254
+-------------------------------------------------
+Data search		1184724.0924835205
+Data search		1179410.9344482422
+Data search		1177079.200744629
+Data search		1186059.9517822266
+-------------------------------------------------
+Range search		377592.0867919922
+Range search		376326.7993927002 *
+Range search		374069.9291229248
+Range search		372889.9955749512 *
+-------------------------------------------------
+* This is narrower than the one above it
+
+
+- Treat indexfile as btree and so it has a result similar 
+    to the btree one.
