@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 import bsddb3 as bsddb
 import random
 import time
@@ -27,7 +29,7 @@ def main():
     try:
         dbtype = sys.argv[1].lower()
     except:
-        print("Usage: python3 main.py db_type_option")
+        print("Usage: ./mydbtest db_type_option")
         return
 
     filetype = ''
