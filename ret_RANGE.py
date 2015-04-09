@@ -73,7 +73,7 @@ def ret_RANGE(filetype):
                 key = key.decode(encoding = 'UTF-8')
                 key_lst.append(key)
             left_bound = 0
-            right_bound = DB_SIZE - 1
+            right_bound = len(key_lst) - 1
             index = -999
             start_time = time.time()
             while left_bound <= right_bound:
