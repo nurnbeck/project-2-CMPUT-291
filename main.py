@@ -5,7 +5,9 @@ import sys
 from bsddb3 import db
 
 from cr_DB import *
+from ret_KEY import *
 from ret_DATA import *
+from ret_RANGE import *
 
 #DATABASE = "cstudents.db“
 #db = bsddb.hashopen(DATABASE, 'c') #this command create a hash db in file
@@ -29,24 +31,30 @@ def get_random_char():
 '''
 def cr_DB():
     return
-'''
+
 def ret_KEY():
     return
-'''
+
 def ret_DATA():
     return
-'''
+
 def ret_RANGE():
     return
-def de_DB(indexfile = False):
+'''
+def de_DB():
     '''
     db.close()
     return
-    '''
+    
     # If there is an indexfile (indexfile = True) then remove it. Set initial value to False
     os.remove(DB_FILE)
     if indexfile:
         os.remove(SDB_FILE)
+    return
+    '''
+    mkdir = os.system('rm -f %s' %(DB_FILE))
+    mkdir = os.system('rm -f %s' %(SDB_FILE))
+    print("Database now destroyed\n")
     return
 
 
@@ -85,45 +93,53 @@ def main():
         inp = input("Enter your choice: ").lower()
         if inp == 'q' or inp == 'quit' or inp == "6":
             while True:
-                inp = input("Do you want to exit? ").lower()
-                if inp == 'y' or inp == 'yes' or inp == 'q':
-                    print("Quit")
-                    return
-                elif inp == 'n' or inp == 'no':
-                    break
-                else:
-                    print("Please enter yes (y) or no (n)")
-                    continue
-            continue
-        elif inp == '1' or inp == 'c':
-            filetype = createdb(dbtype)
-        elif inp == '2' or inp == 'k':
-            pass
-        elif inp == '3' or inp == 'r':
-            if filetype == '' or filetype == False:
-                print("Database may not exist, continue may cause program crash")
-                while True:
-                    inp = input("Do you wish to continue (y/n) > ").lower()
-                    if inp == 'y' or inp == 'yes':
-                        break
+                if filetype == '' or filetype == False:
+                    inp = input("Do you want to exit > ").lower()
+                    if inp == 'y' or inp == 'yes' or inp == 'q':
+                        print("Quit")
+                        return
                     elif inp == 'n' or inp == 'no':
                         break
                     else:
                         print("Please enter yes (y) or no (n)")
                         continue
-                if inp == 'n' or inp == 'no':
-                    continue
-            ret_DATA(DB_FILE, filetype)
+                else:
+                    inp = input("Database exists, do you want to destroy it and exit > ").lower()
+                    if inp == 'y' or inp == 'yes' or inp == 'q':
+                        print("Destroy database and quit")
+                        de_DB()
+                        print("Quit")
+                        return
+                    elif inp == 'n' or inp == 'no':
+                        break
+                    else:
+                        print("Please enter yes (y) or no (n)")
+                        continue
+            continue
+        elif inp == '1' or inp == 'c':
+            filetype = createdb(dbtype)
+            print('filetype:', filetype)
+        elif inp == '2' or inp == 'k':
+            if filetype == '' or filetype == False:
+                print("Database does not exist, create one first")
+            else:
+                ret_KEY(filetype)
+        elif inp == '3' or inp == 'r':
+            if filetype == '' or filetype == False:
+                print("Database does not exist, create one first")
+            else:
+                ret_DATA(filetype)
         elif inp == '4' or inp == 'v':
-            pass
+            if filetype == '' or filetype == False:
+                print("Database does not exist, create one first")
+            else:
+                ret_RANGE(filetype)
         elif inp == '5' or inp == 'd':
-            pass
-        elif inp == '6' or inp == 'q':
-            pass
+            # destroy database, update the filetype
+            de_DB()
+            filetype = ''
         elif inp == 'cls':
             os.system('cls' if os.name == 'nt' else 'clear')
         else:
-            print("Invalid")
-        print(inp)
-
+            print("Invalid input")
     return
