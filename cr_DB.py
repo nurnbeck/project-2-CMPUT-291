@@ -29,6 +29,7 @@ def get_random_char():
 
 def createdb(type):
     print("\nCreate database")
+
     # Create a directory, mkdir = 0 if one is successfully created
     mkdir = os.system('mkdir %s' %(DIR))
     if mkdir != 0:
@@ -51,15 +52,24 @@ def createdb(type):
         # create hash db
         db = bsddb.hashopen(DB_FILE, 'c')
     elif type == '3' or type == 'indexfile' or type == 'i':
+        # create indexfile db
         db = bsddb.btopen(DB_FILE, 'c')
         indexfile = bsddb.hashopen(SDB_FILE, 'c')
 
     random.seed(SEED)
-    for i in range(DB_SIZE):
+    i = 0
+    key_lst = []
+    print("DB_SIZE:", DB_SIZE)
+    start_time = time.time()
+    # Append each generated key to key_lst. If one key is in key_lst then it is a duplicate key.
+    while i < DB_SIZE:
         krng = 64 + get_random()
         key = ''
         for j in range(krng):
             key += str(get_random_char())
+        if key in key_lst:
+            continue
+        key_lst.append(key)
         print("KEY:", key)
         vrng = 64 + get_random()
         value = ''
@@ -70,11 +80,16 @@ def createdb(type):
         key = key.encode(encoding = 'UTF-8')
         value = value.encode(encoding = 'UTF-8')
         db[key] = value
+        if type == 'indexfile':
+            indexfile[value] = key
+        i += 1
+    end_time = time.time()
+    elapse_time = (end_time - start_time) * 1000000
         
     db.close()
     if type == '3' or type == 'indexfile' or type == 'i':
         indexfile.close()
-    print("\nDatabase created, type:", type, "\n")
+    print("\nDatabase created, type:", type, "\nUsed", elapse_time, "microseconds\n")
     return type
 
 
