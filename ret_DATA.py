@@ -16,18 +16,6 @@ DB_FILE = "/tmp/yishuo_db/sample_db"
 SDB_FILE = "/tmp/yishuo_db/IndexFile"
 
 def ret_DATA(filetype):
-    '''
-    try:
-        if filetype == 'btree':
-            db = bsddb.btopen(DB_FILE, 'r')
-        elif filetype == 'hash':
-            db = bsddb.hashopen(DB_FILE, 'r')
-        elif filetype == 'indexfile':
-            db = bsddb.btopen(DB_FILE, 'r')
-    except:
-        print("Unknown error occured, try again")
-        return False
-    '''
     if filetype == 'btree':
         db = bsddb.btopen(DB_FILE, 'r')
     elif filetype == 'hash':
@@ -42,17 +30,6 @@ def ret_DATA(filetype):
     answers = open('answers', 'a')
 
     result_lst = []
-    '''
-    # Prints out all the values in database
-    # For test only
-    # DO NOT use it if there are more than 20 keys in database
-    print("******************************")
-    for key in db.keys():
-        str = db[key]
-        str.decode(encoding = 'UTF-8')
-        print("VALUE:", str)
-    print("******************************")
-    '''
     data = input("Enter the data you want to search > ")
     data = data.encode(encoding = 'UTF-8')
     start_time = time.time()
@@ -80,20 +57,6 @@ def ret_DATA(filetype):
             answers.write('\n')
     else:
         print("Data not found")
-        '''
-        while True:
-            inp = input("Do you want to write empty lines to answers (y/n) > ").lower()
-            if inp == 'y' or inp == 'yes':
-                answers.wirte('\n')
-                answers.write('\n')
-                answers.write('\n')
-                break
-            elif inp == 'n' or inp == 'no':
-                break
-            else:
-                print("Please enter yes (y) or no (n)")
-                continue
-        '''
     print()
     answers.close()
     db.close()
