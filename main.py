@@ -9,56 +9,16 @@ from ret_KEY import *
 from ret_DATA import *
 from ret_RANGE import *
 
-#DATABASE = "cstudents.db“
-#db = bsddb.hashopen(DATABASE, 'c') #this command create a hash db in file
-#"cstudents.db“
-#or db = bsddb.btopen(DATABASE, 'c') to create a B-Tree DB
-#or db = bsddb.rnopen(DATABASE, 'c') to create a record format file
-# Make sure you run "mkdir /tmp/my_db" first!
-DB_FILE = "/tmp/my_db/sample_db"
-SDB_FILE = "/tmp/my_db/IndexFile"
-DB_SIZE = 100000
-SEED = 10000000
-database_exists = False # bool does database already exist
-cur = None # cursor must be accessible by all functions
-DATABASE = None # Not sure if this needs to be here, but playing it safe for now
+DIR = "/tmp/yishuo_db/"
+DB_FILE = "/tmp/yishuo_db/sample_db"
+SDB_FILE = "/tmp/yishuo_db/IndexFile"
 
-def get_random():
-    return random.randint(0, 63)
-def get_random_char():
-    return chr(97 + random.randint(0, 25))
-
-'''
-def cr_DB():
-    return
-
-def ret_KEY():
-    return
-
-def ret_DATA():
-    return
-
-def ret_RANGE():
-    return
-'''
 def de_DB():
-    '''
-    db.close()
-    return
-    
-    # If there is an indexfile (indexfile = True) then remove it. Set initial value to False
-    os.remove(DB_FILE)
-    if indexfile:
-        os.remove(SDB_FILE)
-    return
-    '''
+
     mkdir = os.system('rm -f %s' %(DB_FILE))
     mkdir = os.system('rm -f %s' %(SDB_FILE))
     print("Database now destroyed\n")
     return
-
-
-
 
 def main():
     # initialze answer to an empty file
@@ -143,3 +103,6 @@ def main():
         else:
             print("Invalid input")
     return
+
+if __name__ == "__main__":
+    main()
