@@ -22,7 +22,8 @@ def ret_RANGE(filetype):
     elif filetype == 'hash':
         db = bsddb.hashopen(DB_FILE, 'r')
     elif filetype == 'indexfile':
-        db = bsddb.btopen(SDB_FILE, 'r')
+        db = bsddb.btopen(DB_FILE, 'r')
+        indexfile = bsddb.hashopen(SDB_FILE, 'r')
     else:
         print("Unknown type, function terminated\n")
         return
@@ -120,6 +121,8 @@ def ret_RANGE(filetype):
     print()
     answers.close()
     db.close()
+    if type == '3' or type == 'indexfile' or type == 'i':
+        indexfile.close()
     return
 
 
