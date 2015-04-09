@@ -121,7 +121,7 @@ def ret_RANGE(filetype):
     print()
     answers.close()
     db.close()
-    if type == '3' or type == 'indexfile' or type == 'i':
+    if filetype == 'indexfile':
         indexfile.close()
     return
 
