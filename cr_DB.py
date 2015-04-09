@@ -18,7 +18,7 @@ DB_FILE = "/tmp/yishuo_db/sample_db"
 SDB_FILE = "/tmp/yishuo_db/IndexFile"
 
 #DB_SIZE = 100000
-DB_SIZE = 10
+DB_SIZE = 200
 SEED = 10000000
 
 def get_random():
