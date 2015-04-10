@@ -41,8 +41,7 @@ def ret_DATA(filetype):
     
     elapse_time = (end_time - start_time) * 1000000
 
-    print(len(result_lst), "record(s) received")
-    print("Used", elapse_time, "micro seconds")
+    print("Result:")
 
     data = data.decode(encoding = 'UTF-8')
 
@@ -58,6 +57,9 @@ def ret_DATA(filetype):
             answers.write('\n')
     else:
         print("Data not found")
+    print()
+    print(len(result_lst), "record(s) received")
+    print("Used", elapse_time, "micro seconds")
     print()
     answers.close()
     db.close()
