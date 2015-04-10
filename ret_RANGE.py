@@ -13,8 +13,8 @@ Tested under DB_SIZE = 10
 DB_FILE = "/tmp/yishuo_db/sample_db"
 SDB_FILE = "/tmp/yishuo_db/IndexFile"
 
-#DB_SIZE = 100000
-DB_SIZE = 200
+DB_SIZE = 100000
+#DB_SIZE = 200
 
 def ret_RANGE(filetype):
     if filetype == 'btree':
@@ -67,7 +67,7 @@ def ret_RANGE(filetype):
             print("Data not found")
     else:
         # This is when lower_bound < upper_bound
-        if filetype == 'btree':
+        if filetype == 'btree' or filetype == 'indexfile':
             key_lst = []
             for key in db.keys():
                 key = key.decode(encoding = 'UTF-8')
