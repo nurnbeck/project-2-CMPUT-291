@@ -12,6 +12,7 @@ Return type if a database is successfully created, otherwise return False
 import os
 import random
 import bsddb3 as bsddb
+import time
 
 DIR = "/tmp/yishuo_db/"
 DB_FILE = "/tmp/yishuo_db/sample_db"
