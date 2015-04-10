@@ -35,5 +35,5 @@ We split the work into modules and worked independently on our portions and help
 (e) work load
 
 Nolan Beck: main(), crDB()
-Hong Chen: cr_Key()
-Yishuo Wang: 
+Hong Chen: ret_Key()
+Yishuo Wang: ret_Data(),ret_Range()
