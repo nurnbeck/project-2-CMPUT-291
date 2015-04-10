@@ -1,0 +1,39 @@
+CMPUT 291 Project 2 report
+ 
+Yishuo Wang & Hong Chen & Nolan Beck 
+ 
+// 1272407 // 1386152 // 1413411 //
+ 
+Assignment due: Apr. 10, 2015
+
+a) General Overview
+The user is first taken to a menu with all six functions: Create and populate a database, Retrieve records with a given key ,Retrieve records with a given data, Retrieve records with a given range of key values, Destroy the database, and Quit.
+
+b) Design
+1 Create and populate a database:
+	in case of Btree/hash, creates selected database type and fills with entries, and records the initial time and the time elapsed to fill each
+
+2 Retrieve records with a given key:
+	goes through each key in selected database and compares key to key being searched and data is decoded and returned to index file, index file treated as a hashtable and run time is found and  stored accordingly.
+	
+3 Retrieve records with a given data:
+	same process as key search but the dictionary is accessed in an opposite as data is provided and
+
+4. Retrieve records with a given range of key values:
+	prompt user for upper and lower bounds of database to be searched
+
+5. Destroy the database:
+	accesses mkdir and rm's the database and secondary database.
+
+6. Quit:
+	Return out of main function and end program.
+
+(d) Group Work Strategy
+- Method of Coordination
+We split the work into modules and worked independently on our portions and helped one another if that person encountered a bug that they found difficult. 
+ 
+(e) work load
+
+Nolan Beck: main(), crDB()
+Hong Chen: 
+Yishuo Wang: 
